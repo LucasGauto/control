@@ -1,3 +1,9 @@
+import sqlite3
+conexion = sqlite3.connect('Inventario.db')
+#Establezco conexion
+cursor = conexion.cursor()
+
+
 #Intento de app de gestion de inventarios xd
 
 #Funcionalidades:
@@ -36,9 +42,28 @@ class Producto:
     def setProveedor(self, nombre = str):
         self.proveedor = nombre
 
-class Inventario:
-    def __init__(self):
-        self.inventario = []
+class Proveedor:
+    def __init__(self, nombre, direccion=None, telefono=None):
+        self.nombre = nombre
+        self.direccion = direccion
+        self.telefono = telefono
+    
+    #Metodos Magicos
+    def __str__(self):
+        return str(self.nombre)
+    
+    #Getters
+    def getDireccion(self):
+        return self.direccion
+    def getTelefono(self):
+        return self.telefono
+    
+    #Setters
+    def setDireccion(self, direccion = str):
+        self.direccion = direccion
+    def setTelefono(self, numero = int):
+        self.telefono = numero
+
 
 #Registro de proveedores.
 #Control de stock.
@@ -46,3 +71,7 @@ class Inventario:
 #Generación de informes.
 #Alertas.
 #Seguridad.
+
+
+#Cierro conexion
+conexion.close()
